@@ -1,5 +1,12 @@
 // Add FireBase link here
 // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA8P31fE7TFE-r_-XirZAenFCRMZUW_AKM",
+    authDomain: "first-project-47625.firebaseapp.com",
+    databaseURL: "https://first-project-47625.firebaseio.com",
+    storageBucket: "first-project-47625.appspot.com",
+  };
+  firebase.initializeApp(config);
 
 function registerTrainInput(event) {
 	// Prevents the page from reloading upon completing the form.
@@ -49,6 +56,17 @@ function registerTrainInput(event) {
 		frequency: trainFrequency,
 		arrivalTime: timeUntilTrainArrives
 	};
+	
+	// setTimeout(timeRemainingUpdate, 1000 * 60);
+
+	// function timeRemainingUpdate(){
+	// 	console.log("Updating");
+
+	// 	timeUntilTrainArrives = trainFrequency - timeRemaining;
+	// 	console.log("Minutes till train arrive: " + timeUntilTrainArrives);
+	// 	console.log("____________________________");
+	// 	setTimeout(timeRemainingUpdate, 1000 * 60);
+	// }
 
 	// Pushes the userInputs into the firebase database.
 	firebase.database().ref().push(newTrainContent);
@@ -61,11 +79,19 @@ $(document).ready(function(){
 
 // Calling the child element located in the firebase database, we append a table of the user inputs.
 firebase.database().ref().on('child_added', function(snapshot) {
-		$('tbody').append('<tr>' + 
+		$('tbody').append('<tr class="removeRow">' + 
 			'<td>' + snapshot.val().name + '</td>' +
 			'<td>' + snapshot.val().destination + '</td>' +
 			'<td>' + snapshot.val().frequency + '</td>' +
 			'<td>' + snapshot.val().trainStartTimer + '</td>' +
 			'<td>' + snapshot.val().arrivalTime + '</td>' +
 			'</tr>')
-})
+});
+
+
+$("#removeButton").on("click", function(){
+	$(".removeRow").detach();
+	// this.detach();
+});
+
+
