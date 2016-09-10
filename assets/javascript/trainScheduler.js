@@ -1,12 +1,6 @@
 // Add FireBase link here
 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyA8P31fE7TFE-r_-XirZAenFCRMZUW_AKM",
-    authDomain: "first-project-47625.firebaseapp.com",
-    databaseURL: "https://first-project-47625.firebaseio.com",
-    storageBucket: "first-project-47625.appspot.com",
-  };
-  firebase.initializeApp(config);
+
 
 function registerTrainInput(event) {
 	// Prevents the page from reloading upon completing the form.
